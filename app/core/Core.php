@@ -1,18 +1,17 @@
 <?php
 
 namespace App\core;
+
 class Core {
     protected $currentController = 'Pages';
     protected $currentMethod = 'index';
     protected $params = [];
 
     public function __construct(){
-        //print_r($this->getUrl());
-
         $url = $this->getUrl();
 
         // Look in controllers for first value
-        if(file_exists('../app/controller/' . ucwords($url[0]). '.php')){
+        if(isset($url[0]) && file_exists('../app/controller/' . ucwords($url[0]). '.php')){
             // If exists, set as controller
             $this->currentController = ucwords($url[0]);
             // Unset 0 Index
@@ -22,8 +21,9 @@ class Core {
         // Require the controller
         require_once '../app/controller/'. $this->currentController . '.php';
 
-        // Instantiate controller class
-        $this->currentController = new $this->currentController;
+        // Instantiate controller class with proper namespace
+        $controllerClass = "App\\controller\\" . $this->currentController;
+        $this->currentController = new $controllerClass();
 
         // Check for second part of url
         if(isset($url[1])){
@@ -49,5 +49,6 @@ class Core {
             $url = explode('/', $url);
             return $url;
         }
+        return [];
     }
 }

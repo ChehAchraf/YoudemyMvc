@@ -1,13 +1,22 @@
 <?php
-namespace App\Controllers;
+namespace App\controller;
 
-class Pages
-{
-    public function index()
-    {
-        echo "Welcome to the default page!";
+use App\core\Controller;
+
+class Pages extends Controller {
+    public function index() {
+        $data = [
+            'title' => 'Welcome'
+        ];
+        
+        $this->view('pages/index', $data);
     }
-    public function about(){
 
+    public function about() {
+        $data = [
+            'title' => 'About Us'
+        ];
+        
+        $this->view('pages/about', $data);
     }
 }
