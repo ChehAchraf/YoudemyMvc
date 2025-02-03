@@ -1,0 +1,18 @@
+{
+    "name": "safiy/youmvc",
+    "description": "Turn youdemy into mvc",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ChehAchraf",
+            "email": "achrafchehboun@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
